@@ -1,0 +1,63 @@
+{% extends "FeriaVirtual/base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <div class="section-title"><br><br>
+      <h2 style="color:#73b02b">Compra</h2>
+      <p>Cliente local con retiro en nuestra bodega central</p>
+    </div>
+    <section>
+      <div style="width: 75%; margin: auto; color: black;">
+        <form action="/local/">
+          <button type="submit">Mostrar todo</button>
+        </form><br>
+        <label for="categoria">Categoria:</label>
+        <form action="/Local/" method="GET">
+          {%for oferta in ofertas %}
+            <button name="calidad" type="submit" value="{{oferta.calidad}}">{{oferta.calidad}}</button>
+          {%endfor%}
+        </form>
+      </div>
+    </section>
+    <div style="float: right;">
+        {% include "carro/widget.html" %}
+    </div>
+<div class="row">
+
+{% if calidadGet == None %}
+    {% for oferta in ofertas %}
+        <div class="col-md-4">
+            <div class="card h-100" style="width: 100%; margin: 5px 5px;">
+                
+                <div class="card-body" style="text-align: center;">
+                  <h6 class="card-title">Producto: {{oferta.producto_producto}}</h6> 
+                  <p class="card-text">Calidad: {{oferta.calidad}}</p>
+                  <p class="card-text">Precio: $&nbsp;{{oferta.precio}}</p>
+                </div>
+                <div class="card-footer text-center">
+                    
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% else %}
+    {% for oferta in ofertas %}
+        {% if producto.calidad.nombre == calidadGet %}
+            <div class="col-md-4">
+                <div class="card h-100" style="width: 100%; margin: 5px 5px;">
+                    
+                    <div class="card-body" style="text-align: center;">
+                        <h6 class="card-title">Producto: {{oferta.producto}}</h6> 
+                        <p class="card-text">Calidad: {{oferta.calidad}}</p>
+                        <p class="card-text">Precio: $&nbsp;{{oferta.precio}}</p>
+                    </div>
+                    <div class="card-footer text-center">
+                        <a href="{% url 'carro:agregar' producto.id %}" class="btn btn-success">Agregar</a>
+                    </div>
+                </div>
+              </div>
+        {% endif %}
+    {% endfor %}
+{% endif %}
+{% endblock %}

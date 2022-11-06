@@ -1,0 +1,40 @@
+{% extends "FeriaVirtual/base.html" %}
+{% load static %}
+
+{% block content %}
+<section id="blog" class="blog">
+  <div class="container" data-aos="fade-up">
+    <div class="row">
+      <div class="">
+        <div class="comments">
+          <h4 class="comments-count">Contactanos</h4>
+          <div class="reply-form">
+            <p>Por este medio podras solucionar tus dudas o consulas.</p>
+            <form action="">
+              <div class="row">
+                <div class="col-md-6 form-group">
+                  <input name="name" type="text" class="form-control" placeholder="Your Name*">
+                </div>
+                <div class="col-md-6 form-group">
+                  <input name="email" type="text" class="form-control" placeholder="Your Email*">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col form-group">
+                  <input name="website" type="text" class="form-control" placeholder="Your Website">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col form-group">
+                  <textarea name="comment" class="form-control" placeholder="Your Comment*"></textarea>
+                </div>
+              </div>
+              <button type="submit" class="btn btn-primary">Post Comment</button>
+            </form>
+          </div>
+        </div><!-- End blog comments -->
+      </div>
+    </div>
+  </div>
+</section><!-- End Blog Details Section -->
+{% endblock %}
